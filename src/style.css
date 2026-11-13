@@ -10,3 +10,5 @@
 .club-row .blend-stack{width:var(--stack-width)!important}
 
 .admin-icon-editor{display:flex;align-items:flex-start;gap:14px;padding-bottom:18px;margin-bottom:18px;border-bottom:1px solid var(--line)}.admin-icon-editor>div{min-width:0;flex:1}.admin-icon-editor p,.admin-icon-editor small{display:block;font-size:11px;line-height:1.5;margin:7px 0}.admin-icon-editor a{font-size:11px}.admin-icon-editor .field{margin-top:12px}.admin-icon-editor input[type=file]{font-size:11px;padding:5px}
+
+html,body,#root{height:100%;overflow:hidden}.list-scroll,.messages,.sheet-body,.inventory-list{overscroll-behavior-y:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y}.room-header .room-title{flex:1;overflow:hidden}.room-title>span{min-width:0}.room-title strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block}@media(max-width:700px){.room-header{padding-top:0;padding-bottom:4px}.room-header>.icon-button,.room-header>.room-title{transform:translateY(-1px)}}
