@@ -55,7 +55,9 @@ Desktop outputs are written to `release/1.1.0/`.
 
 ### Android
 
-Install Node.js, Java and the Android SDK, then:
+Install Node.js 22, JDK 17 and the Android SDK (platform 36 and build-tools 36.0.0). Set `JAVA_HOME` to JDK 17 and `ANDROID_HOME` to the SDK before building. A newer Java bundled with Android Studio may not be compatible with this project.
+
+Then:
 
 ```sh
 cd mobile
