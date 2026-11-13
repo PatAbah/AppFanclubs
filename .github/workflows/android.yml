@@ -5,7 +5,7 @@ permissions:
   contents: read
 jobs:
   android:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 45
     defaults:
       run:
@@ -22,6 +22,7 @@ jobs:
           distribution: temurin
           java-version: '17'
           cache: gradle
+      - uses: android-actions/setup-android@v4
       - run: npm ci
       - run: npx expo prebuild --platform android --no-install
       - run: sdkmanager "platforms;android-36" "build-tools;36.0.0" "ndk;27.1.12297006" "cmake;3.22.1"
@@ -37,3 +38,4 @@ jobs:
         with:
           name: android-build-for-signing
           path: mobile/android/app/build/outputs/apk/release/*.apk
+
