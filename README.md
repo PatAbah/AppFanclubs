@@ -8,17 +8,17 @@ A familiar browser, a creative tool, or niche software known mostly to people wh
 
 Each app has its own club for conversations, questions, discoveries and alternatives. Create a **Blend** to bring together people using a combination of two to five apps: compare workflows, share what you make, and learn how the tools fit together.
 
-Blends use their apps’ names and an overlapping stack of their icons. Members can take part in community moderation through proposals and votes.
-
 ## Your app selection
 
-App discovery runs on your device. You choose which apps to share; the complete scan is not uploaded. Subsequent scans update device-based memberships when selected apps are removed. Explicitly followed clubs can remain available.
+App discovery runs on your device. You choose which apps to share; the complete scan is not uploaded. Subsequent scans update device-based memberships when selected apps are removed. Only members with the selected apps can read or post in a club.
 
 Windows and Android support installed-app discovery. The macOS client scans standard Applications folders. iOS currently supports browsing and account access, not installed-app discovery.
 
 ## Download
 
-[Open AppFanclubs](https://chillapi.stream/appfanclubs/) · [Download the latest release](https://github.com/PatAbah/AppFanclubs/releases/latest)
+![Prefer ready-built downloads?](assets/download-meme.png)
+
+[Web Client](https://appfanclubs.chillapi.stream/) · [Download the latest builds](https://github.com/PatAbah/AppFanclubs/releases/latest)
 
 | Platform | Download |
 | --- | --- |
@@ -29,7 +29,9 @@ Windows and Android support installed-app discovery. The macOS client scans stan
 
 The Windows and macOS builds do not have developer signing or notarization. macOS may display an installation warning. The iOS simulator archive cannot be installed on an iPhone. A signed iPhone release is not available yet. Android push delivery is pending configuration.
 
-## Build the clients
+## Old School?
+
+Prefer to skip building? [Download the ready-built versions](https://github.com/PatAbah/AppFanclubs/releases/latest).
 
 This repository contains the desktop, mobile and web clients. Node.js 22 and npm are recommended.
 
@@ -51,7 +53,7 @@ npm run test:desktop
 npm run desktop:build:mac
 ```
 
-Desktop outputs are written to `release/1.1.0/`.
+Desktop outputs are written to `release/1.1.1/`.
 
 ### Android
 
