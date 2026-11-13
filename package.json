@@ -1,6 +1,6 @@
 {
   "name": "appfanclubs",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": false,
   "type": "module",
   "scripts": {
@@ -26,7 +26,7 @@
     "appId": "com.appfanclubs.desktop",
     "productName": "AppFanclubs",
     "directories": {
-      "output": "release/1.1.0"
+      "output": "release/1.1.1"
     },
     "files": [
       "desktop/**/*",
@@ -55,5 +55,5 @@
     "type": "git",
     "url": "https://github.com/PatAbah/AppFanclubs.git"
   },
-  "homepage": "https://chillapi.stream/appfanclubs/"
+  "homepage": "https://appfanclubs.chillapi.stream/"
 }
