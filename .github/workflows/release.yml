@@ -6,6 +6,10 @@ on:
         description: Release tag
         required: true
         default: v1.1.0
+      update_tag:
+        description: Update the existing release tag to the built commit
+        type: boolean
+        default: false
   push:
     tags:
       - 'v*'
@@ -43,6 +47,9 @@ jobs:
       - run: npm run test:desktop
       - run: node -e "require('./desktop/discover-macos.cjs').discoverMacApps().then(r=>{console.log('Detected apps:',r.apps.length,'Complete:',r.complete);if(!r.apps.length)process.exit(1)})"
       - run: npm run desktop:build:mac
+      - name: Check packaged macOS runtime
+        run: |
+          node -e "const {spawnSync}=require('node:child_process');const folder=process.arch==='arm64'?'mac-arm64':'mac';const result=spawnSync('release/1.1.0/'+folder+'/AppFanclubs.app/Contents/MacOS/AppFanclubs',['-e','console.log(process.platform,process.arch)'],{env:{...process.env,ELECTRON_RUN_AS_NODE:'1'},stdio:'inherit',timeout:15000});if(result.error)throw result.error;process.exit(result.status??1)"
       - uses: actions/upload-artifact@v7.0.2
         with:
           name: macos-client
@@ -63,6 +70,8 @@ jobs:
         with:
           path: release-assets
           merge-multiple: true
+      - if: inputs.update_tag
+        run: gh api --method PATCH "repos/$GITHUB_REPOSITORY/git/refs/tags/$RELEASE_TAG" -f sha="$GITHUB_SHA"
       - run: |
           gh release view "$RELEASE_TAG" || gh release create "$RELEASE_TAG" --target "$GITHUB_SHA" --title "AppFanclubs ${RELEASE_TAG#v}" --notes-file RELEASE_NOTES.md
           cd release-assets
