@@ -2,13 +2,13 @@
   "expo": {
     "name": "AppFanclubs",
     "slug": "appfanclubs",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "orientation": "portrait",
     "scheme": "appfanclubs",
     "userInterfaceStyle": "automatic",
     "android": {
       "package": "com.appfanclubs.app",
-      "versionCode": 2,
+      "versionCode": 3,
       "permissions": [
         "android.permission.PACKAGE_USAGE_STATS",
         "android.permission.POST_NOTIFICATIONS"
@@ -23,7 +23,7 @@
     "ios": {
       "bundleIdentifier": "com.appfanclubs.app",
       "supportsTablet": true,
-      "buildNumber": "2"
+      "buildNumber": "3"
     },
     "plugins": [
       "expo-notifications",
