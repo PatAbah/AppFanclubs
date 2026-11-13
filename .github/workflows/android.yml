@@ -1,0 +1,39 @@
+name: Build Android APK
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: mobile
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: mobile/package-lock.json
+      - uses: actions/setup-java@v6.2.0
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
+      - run: npm ci
+      - run: npx expo prebuild --platform android --no-install
+      - run: sdkmanager "platforms;android-36" "build-tools;36.0.0" "ndk;27.1.12297006" "cmake;3.22.1"
+      - name: Build APK
+        env:
+          NODE_ENV: production
+        run: |
+          unset ANDROID_NDK_HOME ANDROID_NDK_ROOT
+          cd android
+          chmod +x gradlew
+          ./gradlew :app:assembleRelease --no-daemon --console=plain
+      - uses: actions/upload-artifact@v7.0.2
+        with:
+          name: android-build-for-signing
+          path: mobile/android/app/build/outputs/apk/release/*.apk
