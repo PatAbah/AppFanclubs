@@ -1,0 +1,12 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const crypto = require('node:crypto');
+const root=path.resolve(__dirname,'..');
+const pkg=JSON.parse(fs.readFileSync(path.join(root,'package.json'),'utf8'));
+const out=path.resolve(root,pkg.build.directories.output);
+fs.copyFileSync(path.join(root,'mobile','appfanclubs.config.json'),path.join(out,'appfanclubs.config.json'));
+const exe=fs.readdirSync(out).find(name=>name.endsWith('.exe'));
+if(!exe)throw new Error('Desktop executable not found');
+const hash=crypto.createHash('sha256').update(fs.readFileSync(path.join(out,exe))).digest('hex');
+fs.writeFileSync(path.join(out,'SHA256SUMS.txt'),`${hash}  ${exe}\n`);
+console.log(`Release ready: ${path.join(out,exe)}`);

@@ -1,0 +1,58 @@
+{
+  "name": "appfanclubs",
+  "version": "1.1.0",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "desktop": "electron desktop/main.cjs",
+    "desktop:build": "electron-builder --win portable && node scripts/desktop-release.cjs",
+    "test:desktop": "node --test desktop/tests/*.test.cjs",
+    "desktop:build:mac": "electron-builder --mac dmg zip --arm64 --x64"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "lucide-react": "^0.468.0"
+  },
+  "devDependencies": {
+    "vite": "^6.4.1",
+    "electron": "^42.0.0",
+    "electron-builder": "^26.0.12"
+  },
+  "main": "desktop/main.cjs",
+  "build": {
+    "appId": "com.appfanclubs.desktop",
+    "productName": "AppFanclubs",
+    "directories": {
+      "output": "release/1.1.0"
+    },
+    "files": [
+      "desktop/**/*",
+      "mobile/appfanclubs.config.json"
+    ],
+    "win": {
+      "target": "portable",
+      "artifactName": "AppFanclubs-${version}-Windows-${arch}.${ext}"
+    },
+    "beforeBuild": "./scripts/desktop-before-build.cjs",
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "identity": "-",
+      "category": "public.app-category.social-networking",
+      "artifactName": "AppFanclubs-${version}-macOS-${arch}.${ext}"
+    }
+  },
+  "description": "AppFanclubs desktop client",
+  "author": "PatAbah",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PatAbah/AppFanclubs.git"
+  },
+  "homepage": "https://chillapi.stream/appfanclubs/"
+}

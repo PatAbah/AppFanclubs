@@ -1,0 +1,70 @@
+name: Build client releases
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag
+        required: true
+        default: v1.1.0
+  push:
+    tags:
+      - 'v*'
+permissions:
+  contents: read
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:desktop
+      - run: npm run desktop:build
+      - uses: actions/upload-artifact@v7.0.2
+        with:
+          name: windows-client
+          path: |
+            release/1.1.0/*.exe
+            release/1.1.0/appfanclubs.config.json
+  macos:
+    runs-on: macos-latest
+    env:
+      CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:desktop
+      - run: node -e "require('./desktop/discover-macos.cjs').discoverMacApps().then(r=>{console.log('Detected apps:',r.apps.length,'Complete:',r.complete);if(!r.apps.length)process.exit(1)})"
+      - run: npm run desktop:build:mac
+      - uses: actions/upload-artifact@v7.0.2
+        with:
+          name: macos-client
+          path: |
+            release/1.1.0/*.dmg
+            release/1.1.0/*.zip
+  publish:
+    needs: [windows, macos]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/download-artifact@v8.0.2
+        with:
+          path: release-assets
+          merge-multiple: true
+      - run: |
+          gh release view "$RELEASE_TAG" || gh release create "$RELEASE_TAG" --target "$GITHUB_SHA" --title "AppFanclubs ${RELEASE_TAG#v}" --notes-file RELEASE_NOTES.md
+          cd release-assets
+          sha256sum * > SHA256SUMS.txt
+          gh release upload "$RELEASE_TAG" * --clobber --repo "$GITHUB_REPOSITORY"

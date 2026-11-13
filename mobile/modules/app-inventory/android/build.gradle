@@ -1,0 +1,16 @@
+apply plugin: 'com.android.library'
+apply plugin: 'expo-module-gradle-plugin'
+
+group = 'com.appfanclubs.inventory'
+version = '1.0.0'
+
+android {
+  namespace 'com.appfanclubs.inventory'
+  defaultConfig {
+    versionCode 1
+    versionName '1.0.0'
+  }
+}
+dependencies {
+  implementation 'androidx.work:work-runtime-ktx:2.10.1'
+}

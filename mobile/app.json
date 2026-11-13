@@ -1,0 +1,47 @@
+{
+  "expo": {
+    "name": "AppFanclubs",
+    "slug": "appfanclubs",
+    "version": "1.1.0",
+    "orientation": "portrait",
+    "scheme": "appfanclubs",
+    "userInterfaceStyle": "automatic",
+    "android": {
+      "package": "com.appfanclubs.app",
+      "versionCode": 2,
+      "permissions": [
+        "android.permission.PACKAGE_USAGE_STATS",
+        "android.permission.POST_NOTIFICATIONS"
+      ],
+      "blockedPermissions": [
+        "android.permission.QUERY_ALL_PACKAGES",
+        "android.permission.READ_MEDIA_IMAGES",
+        "android.permission.READ_MEDIA_VIDEO",
+        "android.permission.RECORD_AUDIO"
+      ]
+    },
+    "ios": {
+      "bundleIdentifier": "com.appfanclubs.app",
+      "supportsTablet": true,
+      "buildNumber": "2"
+    },
+    "plugins": [
+      "expo-notifications",
+      "./plugins/withInventory",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": false
+          }
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "0f5ca2a6-008b-454c-8cf4-607040c0ca6e"
+      }
+    },
+    "owner": "patabah"
+  }
+}
