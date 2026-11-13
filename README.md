@@ -16,6 +16,8 @@ Windows and Android support installed-app discovery. The macOS client scans stan
 
 ## Download
 
+Is this you?
+
 ![Prefer ready-built downloads?](download-meme.png)
 
 [Web Client](https://appfanclubs.chillapi.stream/) · [Download the latest builds](https://github.com/PatAbah/AppFanclubs/releases/latest)
@@ -53,7 +55,7 @@ npm run test:desktop
 npm run desktop:build:mac
 ```
 
-Desktop outputs are written to `release/1.1.1/`.
+Desktop outputs are written to `release/2026.11.13-cat/`.
 
 ### Android
 

@@ -2,3 +2,10 @@ node_modules
 .expo
 /android
 /ios
+
+credentials/
+credentials.json
+*.jks
+*.keystore
+.env
+eas-build*.json

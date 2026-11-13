@@ -5,7 +5,7 @@ on:
       tag:
         description: Release tag
         required: true
-        default: v1.1.1
+        default: v2026.11.13-cat
       update_tag:
         description: Update the existing release tag to the built commit
         type: boolean
@@ -31,8 +31,8 @@ jobs:
         with:
           name: windows-client
           path: |
-            release/1.1.1/*.exe
-            release/1.1.1/appfanclubs.config.json
+            release/2026.11.13-cat/*.exe
+            release/2026.11.13-cat/appfanclubs.config.json
   macos:
     runs-on: macos-latest
     env:
@@ -49,13 +49,13 @@ jobs:
       - run: npm run desktop:build:mac
       - name: Check packaged macOS runtime
         run: |
-          node -e "const {spawnSync}=require('node:child_process');const folder=process.arch==='arm64'?'mac-arm64':'mac';const result=spawnSync('release/1.1.1/'+folder+'/AppFanclubs.app/Contents/MacOS/AppFanclubs',['-e','console.log(process.platform,process.arch)'],{env:{...process.env,ELECTRON_RUN_AS_NODE:'1'},stdio:'inherit',timeout:15000});if(result.error)throw result.error;process.exit(result.status??1)"
+          node -e "const {spawnSync}=require('node:child_process');const folder=process.arch==='arm64'?'mac-arm64':'mac';const result=spawnSync('release/2026.11.13-cat/'+folder+'/AppFanclubs.app/Contents/MacOS/AppFanclubs',['-e','console.log(process.platform,process.arch)'],{env:{...process.env,ELECTRON_RUN_AS_NODE:'1'},stdio:'inherit',timeout:15000});if(result.error)throw result.error;process.exit(result.status??1)"
       - uses: actions/upload-artifact@v7.0.2
         with:
           name: macos-client
           path: |
-            release/1.1.1/*.dmg
-            release/1.1.1/*.zip
+            release/2026.11.13-cat/*.dmg
+            release/2026.11.13-cat/*.zip
   publish:
     needs: [windows, macos]
     runs-on: ubuntu-latest

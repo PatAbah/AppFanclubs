@@ -1,4 +1,6 @@
-AppFanclubs 1.1.1
+AppFanclubs 2026.11.13-cat
+
+This calendar release moves AppFanclubs to its dedicated subdomain, restricts club conversations to selected installed-app members, and improves Android scrolling and header spacing.
 
 Download the file for your platform. The clients connect to https://appfanclubs.chillapi.stream/.
 

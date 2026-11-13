@@ -1,6 +1,6 @@
 {
   "name": "appfanclubs",
-  "version": "1.1.1",
+  "version": "2026.11.13-cat",
   "private": false,
   "type": "module",
   "scripts": {
@@ -26,7 +26,7 @@
     "appId": "com.appfanclubs.desktop",
     "productName": "AppFanclubs",
     "directories": {
-      "output": "release/1.1.1"
+      "output": "release/2026.11.13-cat"
     },
     "files": [
       "desktop/**/*",
@@ -45,8 +45,11 @@
       "identity": "-",
       "category": "public.app-category.social-networking",
       "artifactName": "AppFanclubs-${version}-macOS-${arch}.${ext}",
-      "hardenedRuntime": false
-    }
+      "hardenedRuntime": false,
+      "bundleShortVersion": "2026.11.13",
+      "bundleVersion": "4"
+    },
+    "buildVersion": "2026.11.13.4"
   },
   "description": "AppFanclubs desktop client",
   "author": "PatAbah",
